@@ -54,7 +54,7 @@ public class UserController {
 
 	/**
      *  根据id查询
-      * @param id
+      * @param uid
      * @return
      */
     @GetMapping("/byid")
