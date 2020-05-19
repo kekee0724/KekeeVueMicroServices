@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author cocoa
@@ -32,5 +33,27 @@ public class SendController {
         } else {
             return 1;
         }
+    }
+
+    @PostMapping("/checkPost")
+    public int send(@RequestBody Map<String, Object> req) {
+        Integer uid, jid;
+        uid = (Integer) req.get("uid");
+        jid = (Integer) req.get("jid");
+        boolean res = iSendService.checkPost(uid, jid);
+        System.out.println(res);
+        if (res) {
+            return 1;
+        }
+        return 0;
+    }
+
+    @PostMapping("/send")
+    public int send(@RequestBody Send send) {
+        boolean res = iSendService.Deliver(send);
+        if (res) {
+            return 1;
+        }
+        return 0;
     }
 }

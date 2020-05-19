@@ -34,33 +34,7 @@ public class ResumeServiceImpl extends ServiceImpl<ResumeMapper, Resume> impleme
     @Autowired
     private ResumeMapper resumeMapper;
     @Autowired
-    private SendMapper sendMapper;
-    @Autowired
     private WorkExpMapper workExpMapper;
-
-    @Override
-    public boolean checkPost(Integer uid, Integer jid) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("uid", uid);
-        params.put("jid", jid);
-        List<Resume> resumes = resumeMapper.selectByMap(params);
-        if (resumes != null) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public boolean Deliver(Send send) {
-        boolean checkRepts = checkPost(send.getUid(), send.getJid());
-        if (checkRepts) {
-            return false;
-        }
-        if (sendMapper.insert(send) != 0) {
-            return true;
-        }
-        return false;
-    }
 
     @Override
     public boolean update(Map<String, Object> models) {

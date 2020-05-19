@@ -18,10 +18,6 @@ import java.util.Map;
  */
 public interface IResumeService extends IService<Resume> {
 
-    boolean checkPost(Integer uid, Integer jid);
-
-    boolean Deliver(Send send);
-
     boolean save(Map<String, Object> models);
 
     boolean update(Map<String, Object> models);

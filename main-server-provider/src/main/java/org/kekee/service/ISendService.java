@@ -20,4 +20,8 @@ public interface ISendService extends IService<Send> {
     List<Send> getSendByUid(Integer uid);
 
     boolean updateSendStutas(Integer id, Integer replay);
+
+    boolean checkPost(Integer uid, Integer jid);
+
+    boolean Deliver(Send send);
 }

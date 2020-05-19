@@ -21,19 +21,6 @@ public class ResumeController {
         return iResumeService.getById(uid);
     }
 
-    @PostMapping("/checkPost")
-    public int send(@RequestBody Map<String, Object> req) {
-        Integer uid, jid;
-        uid = (Integer) req.get("uid");
-        jid = (Integer) req.get("jid");
-        boolean res = iResumeService.checkPost(uid, jid);
-        System.out.println(res);
-        if (res) {
-            return 1;
-        }
-        return 0;
-    }
-
     @PostMapping("/updateResume")
     public int updateResume(@RequestBody Map<String, Object> models) {
         if (iResumeService.update(models)) {
@@ -50,15 +37,4 @@ public class ResumeController {
         }
         return 0;
     }
-
-    @PostMapping("/send")
-    public int send(@RequestBody Send send) {
-        boolean res = iResumeService.Deliver(send);
-        if (res) {
-            return 1;
-        }
-        return 0;
-    }
-
-
 }

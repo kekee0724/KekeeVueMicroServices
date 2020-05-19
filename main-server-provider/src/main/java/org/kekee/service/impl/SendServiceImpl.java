@@ -57,4 +57,28 @@ public class SendServiceImpl extends ServiceImpl<SendMapper, Send> implements IS
         }
         return false;
     }
+
+    @Override
+    public boolean checkPost(Integer uid, Integer jid) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("uid", uid);
+        params.put("jid", jid);
+        List<Send> sends = sendMapper.selectByMap(params);
+        if (sends != null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean Deliver(Send send) {
+        boolean checkRepts = checkPost(send.getUid(), send.getJid());
+        if (checkRepts) {
+            return false;
+        }
+        if (sendMapper.insert(send) != 0) {
+            return true;
+        }
+        return false;
+    }
 }
