@@ -1,0 +1,28 @@
+<!--pages/list/list.wxml-->
+  <button class="add" type='primary' bindtap='addArea'>添加</button>
+<view class="container">
+  <view class='widget'>
+    <text class='column'>编号</text>
+    <text class='column'>姓名</text>
+    <text class='column'>邮箱</text>
+    <text class='column'>密码</text>
+    <text class='link-column'>操作</text>
+  </view>
+  <scroll-view scroll-y="true">
+    <view>
+      <block wx:for='{{list}}'>
+      <view class='widget'> 
+        <text class='column'>{{item.uid}}</text>
+        <text class='column'>{{item.uname}}</text>
+        <text class='column'>{{item.uemail}}</text>
+        <text class='column'>{{item.upassword}}</text>
+        <view class='link-column'>
+          <navigator class='link' url='../operation/operation?uid={{item.uid}}'>编辑</navigator> |
+          <text class='link' bindtap='deleteArea' data-areaid='{{item.uid}}' data-areaname='{{item.uname}}' data-index='{{index}}'>删除</text>  
+        </view>
+        </view>      
+      </block>
+    </view>
+  </scroll-view>
+
+</view>

@@ -1,0 +1,23 @@
+package cn.kekee.vue;
+
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+
+/**
+ * @author 可可
+ */
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+@MapperScan(basePackages = "cn.kekee.vue.mapper")
+@EnableDiscoveryClient //启用客户端
+@EnableFeignClients //启用 Feign
+public class VueApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(VueApplication.class, args);
+    }
+
+}

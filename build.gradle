@@ -1,0 +1,30 @@
+group 'org.kekee'
+version '1.0-SNAPSHOT'
+
+task copyHtml(type: Copy) {
+    group = 'build'
+    description = '复制编译后的index.html到 main-server-provider 的 resource 目录'
+    from 'vue-front/dist/index.html'
+    into 'main-server-provider/build/resources/main/static'
+}
+
+task copyStatic(type: Copy, dependsOn: 'copyHtml') {
+    group = 'build'
+    description = '复制编译后的静态文件到 main-server-provider 的 resource 目录'
+    from 'vue-front/dist/static'
+    into 'main-server-provider/build/resources/main/static/static'
+}
+
+copyStatic.mustRunAfter('vue-front:build')
+
+//合并编译输出输出的意思，表示前后端开发的时候是分模块分离开发，但是最终编译到发布项目的时候，会将前端编译的静态内容和html 复制道后台SpringBoot 项目的静态资源目录中,从而达到一体发布。
+task mergeBuild(dependsOn: ['vue-front:build', ':copyStatic', 'main-server-provider:bootJar']) {
+    group = 'build'
+    description = '合并编译输出'
+}
+
+//独立编译输出区别于mergeBuild是不会复制前端文件到SpringBoot端来，所以我们在部署项目的时候，需要单独部署前端服务。
+task independentBuild(dependsOn: ['vue-front:build', 'main-server-provider:bootJar']) {
+    group = 'build'
+    description = '独立编译输出'
+}

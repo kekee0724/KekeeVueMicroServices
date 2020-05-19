@@ -1,0 +1,18 @@
+{
+  "pages": [
+    "pages/bind/bind",
+    "pages/list/list",
+    "pages/logs/logs",
+    "pages/operation/operation",
+    "pages/index/index"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#29d",
+    "navigationBarTitleText": "login",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

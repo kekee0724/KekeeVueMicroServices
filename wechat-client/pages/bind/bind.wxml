@@ -1,0 +1,31 @@
+<!--pages/bind/bind.wxml-->
+<view>
+
+  <form bindsubmit='doLogin'>
+            <!--账号-->
+            <view class="inputView">
+              
+                <label class="loginLabel">账号</label>
+                <input name="uname" value='可可' class="inputText" placeholder="请输入账号" />
+            </view>
+            <view class="line"></view>
+
+            <!--密码-->
+            <view class="inputView">
+                
+                <label class="loginLabel">密码</label>
+                <input name="upassword" value='0724' class="inputText" password="true" placeholder="请输入密码" />
+            </view>
+            
+            <view class="line"></view>
+            <!--按钮-->
+            <view class='backColor'>
+                <button class="loginBtn" formType="submit"  open-type='getUserInfo' >登录</button>
+            </view>
+
+            <!-- <view>
+                <button class="goRegistBtn" type="warn" open-type='getUserInfo' bindgetuserinfo='doLogin'>微信登录</button>
+            </view> -->
+        </form>
+
+</view>

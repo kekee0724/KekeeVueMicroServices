@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>可可(github.com/kekee0724)</title>
+</head>
+<body style="background: url(https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture)">
+<!--<body style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture') no-repeat 0% 20%/ cover;">-->
+<div class="container">
+    <div class="row">
+        <h3 class="m-auto" th:text="${result.title}"></h3>
+        <select class="custom-select" id="selectUserId">
+            <option th:each="user:${result.userList}"
+                    th:value="${user.uid}" th:text="${user.uname}"
+            ></option>
+        </select>
+    </div>
+</div>
+
+<div class="container">
+    <h3 style="text-align: center">hr信息列表</h3>
+    <div th:if="${result.userList}!=null">
+        <table border="1" class="table table-bordered table-hover">
+            <tr class="success">
+                <th>id</th>
+                <th>求职者名字</th>
+                <th>邮箱</th>
+                <th>密码</th>
+                <th>操作</th>
+            </tr>
+            <tr th:each="user:${result.userList}">
+                <td th:text="${user.uid}"></td>
+                <td th:text="${user.uname}"></td>
+                <td th:text="${user.uemail}"></td>
+                <td th:text="${user.upassword}"></td>
+                <td><a class="btn btn-default btn-sm" href="update.html" th:href="@{/admin/updateUser(user=${user})}">修改</a>&nbsp;
+                    <a class="btn btn-default btn-sm" href="list.html"
+                        th:href="@{'/admin/deletUser/'+${user.uid}}">删除</a></td>
+            </tr>
+            <tr>
+                <td colspan="8" align="center"><a class="btn btn-primary" href="add.html" th:href="@{/admin/addUser}">添加用户</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div th:if="${result.userList}==null">
+        <div class="row">
+            <p>
+                hr 管理 API 服务暂不可用
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+<!-- Optional JavaScript -->
+<script type="text/javascript" th:src="@{/js/admin/user.js}"></script>
+</body>
+</html>
