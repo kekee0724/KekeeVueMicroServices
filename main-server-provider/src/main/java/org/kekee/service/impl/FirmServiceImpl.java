@@ -30,6 +30,9 @@ public class FirmServiceImpl extends ServiceImpl<FirmMapper, Firm> implements IF
         params.put("cname", cname);
         params.put("cpassword", cpassword);
         List<Firm> firms = firmMapper.selectByMap(params);
+        if (firms.size()==0 ) {
+            return null;
+        }
         return firms.get(0);
     }
 }

@@ -64,10 +64,10 @@ public class SendServiceImpl extends ServiceImpl<SendMapper, Send> implements IS
         params.put("uid", uid);
         params.put("jid", jid);
         List<Send> sends = sendMapper.selectByMap(params);
-        if (sends != null) {
-            return true;
+        if (sends.size()==0 ) {
+            return false;
         }
-        return false;
+        return true;
     }
 
     @Override

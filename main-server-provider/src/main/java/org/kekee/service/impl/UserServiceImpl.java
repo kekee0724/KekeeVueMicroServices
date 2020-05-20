@@ -30,6 +30,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         params.put("upassword", upassword);
         List<User> users = userMapper.selectByMap(params);
 //        users.forEach(System.out::println);
+        if (users.size()==0 ) {
+            return null;
+        }
         return users.get(0);
     }
 }
